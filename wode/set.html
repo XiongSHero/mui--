@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="../assets/mui/css/mui.min.css">
+	<link rel="stylesheet" href="../css/set.css">
+	<script src="../assets/zepto/zepto.min.js"></script>
+	<script src="../assets/mui/js/mui.min.js"></script>
+	<script src="../js/common.js"></script>
+</head>
+
+<body>
+	<header id="header" class="mui-bar mui-bar-nav">
+		<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<a>
+			<h1 class="mui-title">设置</h1>
+		</a>
+	</header>
+	<div class="mui-content">
+		<ul class="mui-table-view" style="margin-top: 15px;">
+            	<li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            <span>手机号</span>
+                        </a>
+                    </li>
+            <li class="mui-table-view-cell">
+				<a class="mui-navigate-right" href="../forget-psw.html">
+					<span>账户密码</span>
+				</a>
+				
+			</li>
+			<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+							<span>支付密码</span>
+						</a>
+			</li>		
+		</ul>
+		<ul class="mui-table-view" style="margin-top: 15px;">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">
+					<span>清理缓存</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view" style="margin-top: 15px;">
+			<li class="mui-table-view-cell">		
+				<a  class="mui-navigate-right" id="logout" href="../login.html">
+				<span>退出登录</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<script>
+	(function(mui, doc){
+		$('#logout').on('tap', function(e){
+			mui.plusReady(function(){
+				var index = plus.webview.getWebviewById('index.html');
+				index.close();
+			});
+			// 更改个人信息为默认设置
+		});
+	})(mui, document);
+	</script>
+	
+</body>
+
+</html>

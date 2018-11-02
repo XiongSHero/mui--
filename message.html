@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="./assets/mui/css/mui.min.css">
+	<link rel="stylesheet" href="./assets/mui/css/mui.indexedlist.css">
+	<link rel="stylesheet" href="./css/message.css">
+	<script src="assets/mui/js/mui.min.js"></script>
+	<script src="assets/zepto/zepto.min.js"></script>
+	<script src="js/common.js"></script>
+	<style>
+		.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+			border-bottom: 5px solid #ffcc00;
+		}
+		#segmentedControl a.mui-active{
+			color: #333;
+		}
+		#segmentedControl a{
+			color: #ccc;
+		}
+		body, html, .mui-content{
+			height: 100%;
+		}
+		.mui-control-content{
+			height: 100%;
+			padding-top: 63px;
+			box-sizing: border-box;
+		}
+		.mui-scroll-wrapper{
+			top: 63px
+		}
+		.mui-segmented-control-tab{
+			margin-bottom: -63px;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav public-color" id="header">
+		<a href="xiaoxi/tianjiahaoyou.html" class="mui-icon mui-icon-plusempty mui-pull-right" style="font-size: 30px; color: #101010; font-weight: bold;"></a>
+		<h1 id="title" class="mui-title">消息</h1>
+	</header>
+	<div class="mui-content">
+		<div style="padding: 10px;z-index: 999;" id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-tab">
+			<a class="mui-control-item mui-active" href="#item1">聊天</a>
+			<a class="mui-control-item" href="#item2">推荐</a>
+			<a class="mui-control-item " href="#item3">好友</a>
+		</div>	
+		<!-- <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-2"></div> -->
+		<div id="item1" class="mui-control-content mui-active">
+			<div id="scroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--这里放置真实显示的DOM内容-->
+					<ul class="mui-table-view ceshi">
+						<li class="mui-table-view-cell">
+							<a href="xiaoxi/chat.html" data-title-type="native" style="display: inline-block;width: 100%;height: 100%;">
+								<img id="img1" src="images/message/QQ图片20180918101354.png" style="width: 40px;" alt="">
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<img src="images/message/QQ图片20180918101433.png" style="width: 40px;" alt="">
+						</li>
+						<li class="mui-table-view-cell">
+							<img src="images/message/QQ图片20180918101444.png" style="width: 40px;" alt="">
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="item2" class="mui-slider-item mui-control-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--这里放置真实显示的DOM内容-->
+					<ul class="mui-table-view">
+						<div class="main">
+							<div class="together">一起玩过</div>
+							<div class="more"><a href="#">更多
+								</a></div>
+						</div>
+						<div class="friend">
+							<div class="friend-l">
+								<a href="#">
+									<img src="images/@3x/你说我猜@3x.png" alt="">
+								</a>
+							</div>
+							<div class="friend-r">
+								<a href="#">
+									<img src="images/@3x/你说我猜@3x.png" alt="">	
+								</a>
+							</div>
+						</div>
+						<div class="bgc"></div>
+						<div class="main">
+							<div class="together">高手玩家</div>
+						</div>
+						<li class="mui-table-view-cell">
+							第二个选项卡子项-1
+						</li>
+						<li class="mui-table-view-cell">
+							第二个选项卡子项-2
+						</li>
+						<li class="mui-table-view-cell">
+							第二个选项卡子项-3
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="item3" class="mui-slider-item mui-control-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--这里放置真实显示的DOM内容-->
+					<ul class="mui-table-view">
+						<div id="list" class="mui-indexed-list" style="height: 898px;">
+							<div class="mui-indexed-list-search mui-input-row mui-search">
+								<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="" data-input-clear="1" data-input-search="1"><span class="mui-icon mui-icon-clear mui-hidden"></span><span class="mui-placeholder"><span class="mui-icon mui-icon-search"></span><span>搜索好友或群</span></span>
+							</div>
+							<div class="mui-indexed-list-bar" style="height: 863px;">
+								<a style="height: 32.9231px; line-height: 32.9231px;">A</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">B</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">C</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">D</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">E</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">F</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">G</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">H</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">I</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">J</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">K</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">L</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">M</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">N</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">O</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">P</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">Q</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">R</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">S</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">T</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">U</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">V</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">W</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">X</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">Y</a>
+								<a style="height: 32.9231px; line-height: 32.9231px;">Z</a>
+							</div>
+							<div class="mui-indexed-list-alert"></div>
+							<div class="mui-indexed-list-inner" style="height: 863px;">
+								<div class="mui-indexed-list-empty-alert">没有数据</div>
+								<ul class="mui-table-view">
+									<li data-group="B" class="mui-table-view-divider mui-indexed-list-group">B</li>
+									<li data-value="UYN" data-tags="YuLinYuYang" class="mui-table-view-cell mui-indexed-list-item">榆林榆阳机场</li>
+									<li data-value="YUS" data-tags="YuShuBaTang" class="mui-table-view-cell mui-indexed-list-item">玉树巴塘机场</li>
+									<li data-value="YCU" data-tags="YunChengZhangXiao" class="mui-table-view-cell mui-indexed-list-item">运城张孝机场</li>
+									<li data-group="Z" class="mui-table-view-divider mui-indexed-list-group">Z</li>
+									<li data-value="HSN" data-tags="ZhouShanZhuJiaJian" class="mui-table-view-cell mui-indexed-list-item">舟山朱家尖机场</li>
+									<li data-value="ZUH" data-tags="ZhuHaiSanZao" class="mui-table-view-cell mui-indexed-list-item">珠海三灶机场</li>						
+								</ul>
+							</div>
+						</div>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script>
+		(function($, doc) {
+			mui.init({
+				swipeBack: false,//启用右滑关闭功能,
+			});
+			var deceleration = mui.os.ios?0.003:0.0009;
+			$('#scroll').scroll({
+				bounce: false,
+				indicators: false, //是否显示滚动条
+				deceleration:deceleration
+			});
+			$('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			});
+		})(mui, document);
+	</script>
+</body>
+
+</html>

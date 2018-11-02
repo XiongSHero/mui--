@@ -1,0 +1,155 @@
+body{
+    background-color: #fff;
+}
+p{
+	margin: 0px;
+}
+#header{
+    background-color:#ffcc00;
+}
+.cz-ad{
+	padding-top: 10px;
+}
+.cz-ad img{
+	display: block;
+}
+.meimory{
+    color:#000;
+    line-height: 42px;
+    font-size: 16px;
+}
+.mui-action-back{
+    color:#333333;
+}
+.mui-progressbar-in{
+    width: 60%;
+}
+.jingdutiao{
+    width: 100%;
+    height: 40px;
+    position: relative;
+    background-color: #fff;
+	display: flex;
+}
+.jingdutiao h5{
+    height: 30px;
+	line-height: 30px;
+	color: #000;
+}
+.jingdutiao p{
+	flex: 1;
+    margin: 24px 6px 0;
+	
+}
+.jingdutiao .mui-progressbar{
+	background: #ccc;
+}
+.jingdutiao .mui-icon-extra-gift{
+	margin-top: 8px;
+	color:#ccc;
+}
+.mui-wrapper{
+	padding: 0 12px;
+	background: #fff;
+}
+.hr_12{
+	height: 12px;
+	background: f7f7f7;
+}
+
+.yue, .cz-youhui{
+	font-size: 14px;
+	line-height: 24px;
+	color: #ccc;
+}
+.yue{
+	padding: 10px 0;
+}
+.cz-btn{
+	padding: 7px 0;
+}
+.cz-btn .mui-btn,.cz-btn .cz-input{
+	width: 70px;
+	height: 34px;
+	padding: 0;
+	line-height: 34px;
+	text-align: center;
+	font-weight: 400;
+}
+.cz-btn .cz-input{
+	margin-bottom: 0;
+	padding: 6px;
+	font-size: 14px;
+	font-weight: 700;
+}
+.cz-btn .cz-hot{
+	background: #fc0;
+}
+.cz-zhekou{
+	color: #f70a0a;
+}
+
+.cz-zhifu{
+	padding: 14px 0 24px;
+	line-height: 24px;
+	color: #333;
+}
+.cz-comfirm{
+	padding: 10px 0;
+	border-radius: 7px;
+	background: #fc0;
+	color: #333;
+	border: none;
+	outline: none;
+}
+.comfirm-wrap .mui-popover{
+	width: 100%;
+	bottom: 0px;
+	border-radius: 7px 7px 0px 0px;
+}
+.comfirm-wrap .mui-bar{
+	position: static;
+}
+.cf-content{
+	padding: 0 10px;
+}
+.cf-money{
+	padding-top: 10px;
+	text-align: center;
+}
+.cf-money p{
+	color: #333;
+}
+.cf-true{
+	line-height: 26px;
+}
+.cf-pay{
+	font-weight: 400;
+	font-size: 23px;
+	line-height: 38px;
+}
+.cf-payway img{
+	vertical-align: bottom;
+	margin-right: 10px;
+	width: 18px;
+	height: 18px;
+}
+.cf-payway{
+	padding-bottom: 30px;
+}
+.cf-fangshi{
+	position: relative;
+    overflow: hidden;
+    padding: 11px 15px;
+}
+.cf-fangshi:after{
+	position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 15px;
+    height: 1px;
+    content: '';
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    background-color: #c8c7cc;
+}

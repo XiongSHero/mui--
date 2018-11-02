@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<link rel="stylesheet" href="../assets/mui/css/mui.min.css">
+	<link rel="stylesheet" href="../assets/mui/css/mui.picker.min.css">
+	<link rel="stylesheet" href="../css/chongzhijilu.css">
+	<link rel="stylesheet" href="../assets/mui/css/icons-extra.css">
+	<script src="../assets/mui/js/mui.min.js"></script>
+	<script src="../assets/mui/js/mui.picker.min.js"></script>
+	<script src="../assets/zepto/zepto.min.js"></script>
+	<script src="../js/common.js"></script>
+	<style type="text/css">
+		.mui-bar{
+			background: #fc0;
+		}
+	</style>
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+		<span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></span>
+		<span class="mui-icon-extra mui-icon-extra-dictionary mui-pull-right" id="pickdate"></span>
+    	<h1 class="mui-title">账户记录</h1>
+    </header>
+	<div class="mui-content">
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--这里放置真实显示的DOM内容-->
+				<div class="jl-wrap">
+					<div class="jl-pad">
+						<div class="jl-date">2018年8月</div>
+					</div>
+				</div>
+				<div class="jl-d-wrap">
+					<div class="jl-data">
+						<p class="jl-content">
+							<span class="jl-chongzhi mui-pull-left">手机充值</span>
+							<span class="jl-money mui-pull-right">+ <i>100</i>&nbsp;币</span>
+						</p>
+						<p class="jl-detail">
+							<span class="jl-shijian mui-pull-left">8-25&nbsp;14:20</span><span class="jl-zhifu">支付：￥80</span>
+							<span class="jl-yue mui-pull-right">余额：253.25币</span>
+						</p>
+						<div class="jl-quan"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	(function(mui, doc) {
+		mui.init();
+		doc.getElementById('pickdate').addEventListener('tap', function(){
+			var dtPicker = new mui.DtPicker({
+				type: 'month'
+			});
+			dtPicker.show(function(e){
+				console.log(e.value);// 选取的时间e
+			});
+		});
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005 ,//flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006,
+			indicators: false //是否显示滚动条
+		});
+	})(mui, document);
+</script>
+</html>

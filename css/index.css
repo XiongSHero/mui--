@@ -1,0 +1,153 @@
+ul{
+	list-style:none;
+}
+.public-color{
+	background: #fc0;
+}
+
+.active{
+	opacity:0.6;
+}
+.mui-scroll-wrapper{
+	top: 44px
+}
+
+#tabbar{
+	padding:0 10px 10px 10px;
+	background: url(../images/@2x/2.png) no-repeat;
+	background-size:cover;
+	/* background-position: center center; */
+}
+.mui-icon img{
+	width: 50%;
+}
+.mui-grid-9{
+	border-radius: 15px;
+	/* box-shadow: 1px 1px 5px #fff; */
+	box-shadow: 0 1px 6px #ccc;
+	/* position: fixed; */
+	padding:0 10px;
+	z-index:2;
+	
+}
+
+.mui-content{
+	background-color: #fff;
+	transition: all 0.5s;
+}
+.mui-table-view .mui-grid-view .mui-grid-9{
+	background-color: #fff;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+	border:none;
+	padding:0;
+}
+.mui-slider-item{
+	padding: 10px;
+	padding-bottom: 20px;
+	background-color: #fff;
+}
+.mui-slider .mui-slider-group .mui-slider-item img{
+	height: 160px;
+}
+.mui-slider-indicator .mui-indicator{
+	background: #fc0;
+	border: none
+}
+.mui-slider-indicator .mui-active.mui-indicator{
+	width: 12px;
+	border-radius: 6px;
+}
+.mui-slider-indicator{
+	bottom:1px;
+}
+.mui-tab-item img{
+	text-align: center;
+	width: 20%;
+	position: relative;
+	top: 4px;
+}
+.footer a{
+	padding-top:5px;
+}
+.footer .mui-tab-item.mui-active{
+	color:#ffcc00;
+}
+.mui-table-view:before,
+.mui-table-view:after{
+	height: 0px;
+}
+.footer a{
+	font-size: 12px;
+}
+.mg{
+	margin-bottom: 30px;
+}
+.mui-slider-indicator .mui-active.mui-indicator{
+	background-color: #ffcc00;
+}
+.main{
+	height: 60px;
+	padding-bottom: 10px;
+	background-color: #fff;
+	font-size: 16px;
+}
+.together{
+	float:left;
+	margin-left:20px;
+	padding-left: 10px;
+	line-height: 60px;
+	position: relative;
+}
+.together::before{
+	content:"";
+	position: absolute;
+	width: 5px;
+	height: 30px;
+	background-color: #ffcc00;
+	top: 15px;
+	left:-10px;
+}
+.more{
+	float: right;
+	margin-right: 20px;
+	line-height: 60px;
+	
+}
+.more a{
+	color:#666;
+	font-size: 14px;
+}
+.more img{
+	position: relative;
+    top: -2px;
+	vertical-align: middle;
+	display: inline-block;
+	width: 16px;
+	height: 14px;
+}
+.bgc{
+	width: 100%;
+	height: 10px;
+	background-color: #eee;
+}
+.mui-bar{
+	box-shadow:  none;
+}
+.mui-table-view.mui-grid-view .mui-table-view-cell{
+	margin-right: -5px;
+}
+.mui-table-view.mui-grid-view.home-login{
+	font-size: 20px;
+	font-weight: bold;
+	color: #fc0;
+	letter-spacing: 3px;
+	height: 87px;
+	line-height: 87px;
+	text-align: center;
+	background: #fff;
+}
+.mui-slider-indicator .mui-indicator{
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}

@@ -1,0 +1,74 @@
+
+p{
+	margin: 0px;
+}
+.public-color{
+	background: #fc0;
+}
+.padding-44{
+	background: #fff;
+	padding-top: 44px
+}
+.gg-wrapper{
+	padding: 0 10px;
+}
+.gg-discount{
+	line-height: 42px;
+	font-size: 	18px;
+	font-weight: 400;
+	color: #333;
+}
+.gg-img{
+	width: 100%;
+	display: block;
+	vertical-align: middle;
+}
+.gg-xtwrapper{
+	padding-top: 30px;
+}
+.gg-xitong{
+	font-size: 10px;
+	line-height: 15px;
+	color: #999;
+}
+.gg-time{
+	margin-left: 26px;
+}
+.gg-item{
+	margin-top: 4px;
+}
+.gg-text{
+	position: relative;
+	width: 100%;
+	max-height: 50px;
+	line-height: 25px;
+	font-size: 15px;
+	color: #333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	white-space: normal;
+}
+.gg-game{
+	margin-top: 10px;
+}
+.gg-itemma{
+	margin-bottom: 20px;
+}
+.mui-table-view-cell:after{
+	height: 0;
+}
+.mui-table-view:after, .mui-table-view:before{
+	height: 0;
+}
+.gg-listimg{
+	padding-top: 5px;
+}
+
+.mui-table-view .mui-media-object{
+	line-height: 75px;
+    max-width: 100px;
+    height: 75px;
+}

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+        <title></title>
+        <link href="../assets/mui/css/mui.min.css" rel="stylesheet">
+		<link href="../assets/mui/css/icons-extra.css" rel="stylesheet">
+        <link href="../assets/mui/css/mui.imageviewer.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/chat.css">
+		<script src="../assets/zepto/zepto.min.js"></script>
+		<script src="../assets/mui/js/mui.min.js"></script>
+		<script src="../js/common.js"></script>
+    </head>
+    <body contextmenu="return false;">
+    	<pre id='h'></pre>
+    	<script id='msg-template' type="text/template">
+    		<% for(var i in record){ var item=record[i]; %>
+    			<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>'>
+    				<% if(item.sender=='self' ) { %>
+    					<i class="msg-user mui-icon mui-icon-person"></i>
+    				<% } else { %>
+    					<img class="msg-user-img" src="../images/logo.png" alt="" />
+    				<% } %>
+    				<div class="msg-content">
+    					<div class="msg-content-inner">
+    						<% if(item.type=='text' ) { %>
+    							<%=( item.content|| '&nbsp;&nbsp;') %>
+    						<% } else if(item.type=='image' ) { %>
+    							<img class="msg-content-image" src="<%=(item.content)%>" style="max-width: 100px;" />
+    						<% } else if(item.type=='sound' ) { %>
+    							<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
+    							<span class="play-state">点击播放</span>
+    						<% } %>
+							<span id="sendTime"></span>
+    					</div>
+    					<!-- <div class="msg-content-arrow"></div> -->
+    				</div>
+    				<div class="mui-item-clear"></div>
+    			</div>
+    		<% } %>
+    	</script>
+		<header class="mui-bar mui-bar-nav chat-header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a class="mui-icon mui-icon-contact mui-pull-right" style="color: #000" href="more.html"></a>
+			<h1 class="mui-title">chat (聊天窗口)</h1>
+		</header>
+    	<div class="mui-content">
+    		<div id='msg-list'>
+    		</div>
+    	</div>
+    	<footer>
+    		<div class="foot-wrap">
+				<div class="footer-left">
+					<i id='msg-shuohua' class="mui-icon mui-icon-mic" style="font-size: 28px;"></i>
+				</div>
+				<div class="footer-center">
+					<textarea id='msg-text' type="text" class='input-text'></textarea>
+					<button id='msg-sound' type="button" class='input-sound' style="display: none;">按住说话</button>
+				</div>
+				<div for="" class="footer-right">
+					<!-- <i  class="mui-icon mui-icon-mic jianxi" id="biaoqing"></i> -->
+					<i  class="mui-icon mui-icon-plus" id="gongneng"></i>
+				</div>
+				<div class="btn-send">
+					<button  type="button" class="mui-btn mui-btn-primary">发送</button>
+				</div>
+			</div>
+			<div id="bottomBox" class="bottom-box">
+				<div class="gongneng">
+					<div class="bq-item">
+						<i id='msg-image' class="mui-icon mui-icon-camera" style="font-size: 34px;"></i>
+					</div>
+					<div class="bq-item">
+						<a href="#modal" class="mui-icon-extra mui-icon-extra-gold" style="font-size: 26px;"></a>
+					</div>
+				</div>
+			</div>
+    	</footer>
+		<div id="modal" class="mui-modal">
+			<header class="mui-bar mui-bar-nav">
+				<a class="mui-icon mui-icon-close mui-pull-right" href="#modal"></a>
+				<h1 class="mui-title">发红包</h1>
+			</header>
+			<div class="mui-content" style="position: fixed;top: 0; bottom: 0;left: 0; right: 0;">
+				<form id='login-form' class="mui-input-group" style="width: 100%; background: red;">
+					<div class="mui-input-row">
+						<label>账号</label>
+						<input id='account' type="number" class="mui-input-clear mui-input" placeholder="请输入账号">
+					</div>
+					<div class="mui-input-row">
+						<label>密码</label>
+						<textarea rows="5" cols="">
+							
+						</textarea>
+					</div>
+				</form>
+			</div>
+		</div>
+    	<div id='sound-alert' class="rprogress">
+    		<div class="rschedule"></div>
+    		<div class="r-sigh">!</div>
+    		<div id="audio_tips" class="rsalert">手指上滑，取消发送</div>
+    	</div>
+		
+		<script src="../assets/mui/js/mui.imageViewer.js"></script>
+		<script src="../assets/mui/js/arttmpl.js"></script>
+        <script type="text/javascript" charset="utf-8">
+			(function($, doc) {
+				// 测试传值
+				mui.plusReady(function(){
+					window.addEventListener('chat', function(e){
+						// alert(e.detail.img);
+						// mui.currentWebview.show();
+					})
+				})
+				var MIN_SOUND_TIME = 800;
+				$.init({
+					gestureConfig: {
+						tap: true, //默认为true
+						doubletap: true, //默认为false
+						longtap: true, //默认为false
+						swipe: true, //默认为true
+						drag: true, //默认为true
+						hold: true, //默认为false，不监听
+						release: true //默认为false，不监听
+					}
+				});
+				template.config('escape', false);
+				
+				if(mui.os.ios){
+					// 解决在ios上fixed元素focusin时位置出现错误的问题 
+					document.addEventListener('DOMContentLoaded',function(){
+						var footerDom = document.querySelector('footer');
+						
+						document.addEventListener('focusin', function() {
+							footerDom.style.position = 'absolute';
+						});
+						document.addEventListener('focusout', function() {
+							footerDom.style.position = 'fixed';
+						});
+					});
+				}
+
+				$.plusReady(function() {
+					plus.webview.currentWebview().setStyle({
+						softinputMode: "adjustResize"
+					});
+					var showKeyboard = function() {
+						if ($.os.ios) {
+							var webView = plus.webview.currentWebview().nativeInstanceObject();
+							webView.plusCallMethod({
+								"setKeyboardDisplayRequiresUserAction": false
+							});
+						} else {
+							var Context = plus.android.importClass("android.content.Context");
+							var InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+							var main = plus.android.runtimeMainActivity();
+							var imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+							imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+							//var view = ((ViewGroup)main.findViewById(android.R.id.content)).getChildAt(0);
+							imm.showSoftInput(main.getWindow().getDecorView(), InputMethodManager.SHOW_IMPLICIT);
+							//alert("ll");
+						}
+					};
+					var record = [{
+						sender: 'zs',
+						type: 'text',
+						content: 'Hi，我是 MUI 小管家！'
+					}];
+					// 封装ui空间对象
+					var ui = {
+						body: doc.querySelector('body'),
+						footer: doc.querySelector('footer'),
+						footWrap: doc.querySelector('.foot-wrap'),
+						footerRight: doc.querySelector('.footer-right'),
+						footerLeft: doc.querySelector('.footer-left'),
+						btnMsgType: doc.querySelector('#msg-type'),
+						boxMsgText: doc.querySelector('#msg-text'),
+						boxMsgShuohua: doc.querySelector('#msg-shuohua'),
+						boxMsgSound: doc.querySelector('#msg-sound'),
+						btnMsgImage: doc.querySelector('#msg-image'),
+						areaMsgList: doc.querySelector('#msg-list'),
+						boxSoundAlert: doc.querySelector('#sound-alert'),
+						bottomBox: doc.querySelector('#bottomBox'),
+						h: doc.querySelector('#h'),
+						sendBtn: doc.querySelector('.btn-send'),
+						gongnengBox: doc.querySelector('.gongneng'),
+						content: doc.querySelector('.mui-content'),
+					};
+					ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
+					//alert(ui.boxMsgText.offsetWidth );
+					var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
+					var msgItemTap = function(msgItem, event) {
+						var msgType = msgItem.getAttribute('msg-type');
+						var msgContent = msgItem.getAttribute('msg-content')
+						if (msgType == 'sound') {
+							player = plus.audio.createPlayer(msgContent);
+							var playState = msgItem.querySelector('.play-state');
+							playState.innerText = '正在播放...';
+							player.play(function() {
+								playState.innerText = '点击播放';
+							}, function(e) {
+								playState.innerText = '点击播放';
+							});
+						}
+					};
+					var imageViewer = new $.ImageViewer('.msg-content-image', {
+						dbl: false
+					});
+					var msgScrollTop = function(){
+						ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+					}
+					var bindMsgList = function() {
+						//绑定数据:
+						/*tp.bind({
+							template: 'msg-template',
+							element: 'msg-list',
+							model: record
+						});*/
+						ui.areaMsgList.innerHTML = template('msg-template', {
+							"record": record
+						});
+						var msgItems = ui.areaMsgList.querySelectorAll('.msg-item');
+						[].forEach.call(msgItems, function(item, index) {
+							item.addEventListener('tap', function(event) {
+								msgItemTap(item, event);
+							}, false);
+						});
+						imageViewer.findAllImage();
+						msgScrollTop();
+					};
+					bindMsgList();
+					window.addEventListener('resize', function() {
+						msgScrollTop();
+					}, false);
+					var send = function(msg) {
+						record.push(msg);
+						bindMsgList();
+						toRobot(msg.content);
+					};
+					var toRobot = function(info) {
+						var apiUrl = 'http://www.tuling123.com/openapi/api';
+						$.getJSON(apiUrl, {
+							"key": 'acfbca724ea1b5db96d2eef88ce677dc',
+							"info": info,
+							"userid": plus.device.uuid
+						}, function(data) {
+							// alert(JSON.stringify(data));
+							record.push({
+								sender: 'zs',
+								type: 'text',
+								content: data.text
+							});
+							bindMsgList();
+						});
+					};
+
+					function msgTextFocus() {
+							ui.boxMsgText.focus();
+							setTimeout(function() {
+								ui.boxMsgText.focus();
+							}, 150);
+						}
+
+					// 左侧说话按钮
+					var sound = true;
+					ui.footerLeft.addEventListener('tap', function(event){
+						if(sound){
+							ui.boxMsgText.style.display = 'none';
+							ui.boxMsgSound.style.display = 'block';
+							doMove(ui.content, "paddingBottom", -20, 50);
+							doMove(ui.footer, "height", -20, 50);
+							ui.boxMsgText.blur();
+							ui.boxMsgShuohua.classList.add('mui-icon-compose');
+							ui.boxMsgShuohua.classList.remove('mui-icon-mic');
+							sound = false;
+							gongneng = true;
+						} else {
+							ui.boxMsgSound.style.display = 'none';
+							ui.boxMsgText.style.display = 'block';
+							msgTextFocus();
+							ui.boxMsgShuohua.classList.add('mui-icon-mic');
+							ui.boxMsgShuohua.classList.remove('mui-icon-compose');
+							sound = true;
+						}
+					})
+					// 右侧显示表情和功能
+                    function getStyle( obj,attr){
+                        return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+                    }
+                    function doMove(obj,attr,speed,target,endfn){
+                        clearInterval(obj.timer);
+                        obj.timer=setInterval(function (){
+                            var pos=parseFloat(getStyle(obj,attr))+speed;
+                            if(pos<target&&speed<0){
+                                pos=target;
+                            }
+                            if(pos>target&&speed>0){
+                                pos=target;
+                            }
+                            obj.style[attr]=pos+'px';
+                            if(pos===target||speed===0){
+                                clearInterval(obj.timer);
+                                endfn && endfn();
+                            }
+                        },30)
+                    }
+                    var gongneng = true;
+					ui.footerRight.addEventListener('tap', function(event){
+						if(gongneng){
+							// console.log(111);
+							ui.bottomBox.style.display = 'block';
+							gongneng = false;
+							var footh = parseFloat(getStyle(ui.footWrap, "height").split('px')[0]) + 150;
+							doMove(ui.content, "paddingBottom", 20, footh);
+							doMove(ui.footer, "height", 20, footh, function(){
+								msgScrollTop();
+							});
+							// 点开表情或者功能后,滚动至底部
+						}
+						if(!focus){
+							ui.boxMsgText.blur();
+						}
+						if(!sound){
+							ui.boxMsgSound.style.display = 'none';
+							ui.boxMsgText.style.display = 'block';
+							ui.boxMsgShuohua.classList.add('mui-icon-mic');
+							ui.boxMsgShuohua.classList.remove('mui-icon-compose');
+							sound = true;
+						}
+					});
+					// 发送消息
+					mui(document.body).on('tap', '.mui-btn', function(e) {
+						e.preventDefault();
+						return;
+					});
+					ui.sendBtn.addEventListener("release",function(event) {
+						event.preventDefault();
+						if(ui.boxMsgText.value === ''){
+							return;
+						}
+						send({
+							sender: 'self',
+							type: 'text',
+							content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
+						});
+						ui.boxMsgText.value = '';
+						$.trigger(ui.boxMsgText, 'input', null);
+					});
+					// 相册和拍照功能
+					ui.btnMsgImage.addEventListener('tap', function(event) {
+						var btnArray = [{
+							title: "拍照"
+						}, {
+							title: "从相册选择"
+						}];
+						plus.nativeUI.actionSheet({
+							title: "选择照片",
+							cancel: "取消",
+							buttons: btnArray
+						}, function(e) {
+							var index = e.index;
+							switch (index) {
+								case 0:
+									break;
+								case 1:
+									var cmr = plus.camera.getCamera();
+									cmr.captureImage(function(path) {
+										send({
+											sender: 'self',
+											type: 'image',
+											content: "file://" + plus.io.convertLocalFileSystemURL(path)
+										});
+									}, function(err) {});
+									break;
+								case 2:
+									plus.gallery.pick(function(path) {
+										send({
+											sender: 'self',
+											type: 'image',
+											content: path
+										});
+									}, function(err) {}, null);
+									break;
+							}
+						});
+					}, false);
+					var setSoundAlertVisable=function(show){
+						if(show){
+							ui.boxSoundAlert.style.display = 'block';
+							ui.boxSoundAlert.style.opacity = 1;
+						}else{
+							ui.boxSoundAlert.style.opacity = 0;
+							//fadeOut 完成再真正隐藏
+							setTimeout(function(){
+								ui.boxSoundAlert.style.display = 'none';
+							},200);
+						}
+					};
+					var recordCancel = false;
+					var recorder = null;
+					var audio_tips = document.getElementById("audio_tips");
+					var startTimestamp = null;
+					var stopTimestamp = null;
+					var stopTimer = null;
+					ui.boxMsgSound.addEventListener('hold', function(event) {
+						recordCancel = false;
+						if(stopTimer)clearTimeout(stopTimer);
+						audio_tips.innerHTML = "手指上划，取消发送";
+						ui.boxSoundAlert.classList.remove('rprogress-sigh');
+						setSoundAlertVisable(true);
+						recorder = plus.audio.getRecorder();
+						if (recorder == null) {
+							plus.nativeUI.toast("不能获取录音对象");
+							return;
+						}
+						startTimestamp = (new Date()).getTime();
+						recorder.record({
+							filename: "_doc/audio/"
+						}, function(path) {
+							console.log(path)
+							if (recordCancel) return;
+							send({
+								sender: 'self',
+								type: 'sound',
+								content: path
+							});
+						}, function(e) {
+							plus.nativeUI.toast("录音时出现异常: " + e.message);
+						});
+					}, false);
+					ui.body.addEventListener('drag', function(event) {
+						//console.log('drag');
+						if (Math.abs(event.detail.deltaY) > 50) {
+							if (!recordCancel) {
+								recordCancel = true;
+								if (!audio_tips.classList.contains("cancel")) {
+									audio_tips.classList.add("cancel");
+								}
+								audio_tips.innerHTML = "松开手指，取消发送";
+							}
+						} else {
+							if (recordCancel) {
+								recordCancel = false;
+								if (audio_tips.classList.contains("cancel")) {
+									audio_tips.classList.remove("cancel");
+								}
+								audio_tips.innerHTML = "手指上划，取消发送";
+							}
+						}
+					}, false);
+					ui.boxMsgSound.addEventListener('release', function(event) {
+						//console.log('release');
+						if (audio_tips.classList.contains("cancel")) {
+							audio_tips.classList.remove("cancel");
+							audio_tips.innerHTML = "手指上划，取消发送";
+						}
+						//
+						stopTimestamp = (new Date()).getTime();
+						if (stopTimestamp - startTimestamp < MIN_SOUND_TIME) {
+							audio_tips.innerHTML = "录音时间太短";
+							ui.boxSoundAlert.classList.add('rprogress-sigh');
+							recordCancel = true;
+							stopTimer=setTimeout(function(){
+								setSoundAlertVisable(false);
+							},800);
+						}else{
+							setSoundAlertVisable(false);
+						}
+						recorder.stop();
+					}, false);
+					ui.boxMsgSound.addEventListener("touchstart", function(e) {
+						//console.log("start....");
+						e.preventDefault();
+					});
+					ui.boxMsgText.addEventListener('input', function(event) {
+						// ui.btnMsgType.classList[ui.boxMsgText.value == '' ? 'remove' : 'add']('mui-icon-paperplane');
+						// ui.btnMsgType.setAttribute("for", ui.boxMsgText.value == '' ? '' : 'msg-text');
+						// var txtBox = gongneng ? 0 : 150;
+						ui.h.innerText = ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '\n-') || '-';
+						ui.footWrap.style.height = (ui.h.offsetHeight + footerPadding) + 'px';
+						ui.footer.style.height = (ui.h.offsetHeight + footerPadding) + 'px';
+						ui.content.style.paddingBottom = ui.footer.style.height;
+						if(ui.footWrap.style.height.split('px')[0] > 114){
+							ui.footer.style.height = '114px';
+							ui.content.style.paddingBottom = '114px';
+						}	
+					});
+					var focus = false;
+					ui.boxMsgText.addEventListener('tap', function(event) {
+						ui.boxMsgText.focus();
+						setTimeout(function() {
+							ui.boxMsgText.focus();
+						}, 0);
+						focus = true;
+						setTimeout(function () {
+							focus = false;
+						},500);
+						if(!gongneng){
+							ui.bottomBox.style.display = 'none';
+							ui.footer.style.height = ui.footWrap.style.height;
+							ui.content.style.paddingBottom = ui.footer.style.height;
+						}
+						event.detail.gesture.preventDefault();
+					}, false);
+					//点击消息列表，关闭键盘
+					ui.areaMsgList.addEventListener('tap',function (event) {
+						if(!focus){
+							ui.boxMsgText.blur();
+						}
+						if(!gongneng){
+							var footHeight = getStyle(ui.footWrap, "height").split('px')[0];
+						    doMove(ui.footer, "height", -20, footHeight);
+                            doMove(ui.content, "paddingBottom", -20, footHeight);
+						    gongneng = true;
+						}
+					})
+					
+				});
+			}(mui, document));
+		</script>
+            
+            <div class="mui-imageviewer"><div class="mui-imageviewer-mask"></div><div class="mui-imageviewer-header"><i class="mui-icon mui-icon-closeempty mui-imageviewer-close"></i><span class="mui-imageviewer-state"></span></div><i class="mui-icon mui-icon-arrowleft  mui-imageviewer-left"></i><i class="mui-icon mui-icon-arrowright mui-imageviewer-right"></i></div></body>  
+
+</html>
+
+	

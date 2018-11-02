@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../assets/mui/css/mui.min.css">
+		<link rel="stylesheet" href="../assets/mui/css/icons-extra.css">
+		<link rel="stylesheet" href="../css/tianjiapengyou.css">
+		<script src="../assets/mui/js/mui.min.js"></script>
+		<script src="../assets/zepto/zepto.min.js"></script>
+		<script src="../assets/zepto/vue.min.js"></script>
+		<script src="../js/common.js"></script>
+		<style type="text/css">
+			.m-addBox{
+				width: 36px;
+				height: 36px;
+				background: #fc0;
+				float: left;
+				border-radius: 3px;
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">添加朋友</h1>
+		</header>
+		<div class="mui-content">
+			<form class="tj-search">
+				<div class="mui-input-row mui-search">
+					<input type="search" v-model="searchVal" class="mui-input-clear" placeholder="手机号/微信号/QQ号">
+				</div>
+			</>
+			<!--双向绑定搜索结果-->
+			<ul v-show="searchVal" class="mui-table-view" @click="getData()">
+				<li class="mui-table-view-cell mui-indexed-list-item mui-media">
+					<div class="m-addBox">
+						<span class="mui-icon-extra mui-icon-extra-addpeople" style="color: #fff;text-align: center;margin-left: 5px;margin-top: 5px;"></span>
+					</div>
+					<div class="mui-media-body" style="padding-left: 10px;">
+						<span style="padding-top: 7px;display: inline-block;">搜索：
+							<span id="inputVal" v-text="searchVal" style="color: #007aff;"></span>
+						</span>
+					</div>
+				</li>
+			</ul>
+			<ul class="mui-table-view"  style="margin-top: 15px;">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right tongxunlu">
+						<img src="../images/wode/钱包@2x.png" alt="">
+						<div class="tongxunlu">
+							<p class="txl-daoru">从通讯录导入</p>
+							<p class="txl-haoyou">添加或者邀请通讯录中的朋友</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view"  style="margin-top: 15px;">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						<img src="../images/wode/钱包@2x.png" alt="">
+						<div class="qqhaoyou">
+							<p>邀请QQ好友</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view"  style="margin-top: 15px;">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						<img src="../images/wode/钱包@2x.png" alt="">
+						<div class="qqhaoyou">
+							<p>邀请微信好友</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var vm = new Vue({
+				el: '.mui-content',
+				data: {
+					searchVal: '',
+					loginID: '',
+					user: {}
+				},
+				mounted: function(){
+					this.$nextTick(function(){
+						this.InitPage();
+					})
+				},
+				methods: {
+					InitPage: function(){
+						var _this = this;
+						mui.plusReady(function(){
+							var sData = plus.webview.currentWebview();
+							_this.loginID = sData.loginID;
+							_this.user = sData.loginer
+						})
+					},
+					getData: function(){
+						
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

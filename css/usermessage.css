@@ -1,0 +1,63 @@
+ul{
+	list-style:none;
+}
+#header{
+	padding: 0 20px;
+	background-color: #ffcc00;
+	border:none;
+}
+.mui-icon img{
+	width: 50%;
+}
+
+
+.mui-table-view .mui-grid-view .mui-grid-9{
+	background-color: #fff;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+	border:none;
+}
+.mui-tab-item img{
+	text-align: center;
+	width: 20%;
+}
+.footer{
+	padding:5px 0;
+}
+.footer .mui-tab-item.mui-active{
+	color:#ffcc00;
+}
+.footer a{
+	font-size: 14px;
+}
+.title{
+	height: 200px;
+	background-color: #ff3040;
+}
+.mui-table-view:before,
+.mui-table-view:after,
+{
+	height:0px;
+}
+.mui-table-view .mui-table-view-cell span{
+	font-size: 16px;
+	color:#666;
+	display: inline-block;
+}
+.mui-table-view .mui-table-view-cell a{
+	display: block;
+}
+.mui-table-view .mui-table-view-cell a img{
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+}
+.mui-bar-nav.mui-bar .mui-icon{
+    margin-left:-15px;
+}
+ .mui-action-back{
+    color:#333;
+}
+.mui-content>.mui-table-view:first-child {
+    margin-top: 0px;
+}

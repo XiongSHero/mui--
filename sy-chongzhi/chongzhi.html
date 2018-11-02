@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/mui/css/mui.min.css">
+    <link rel="stylesheet" href="../css/chongzhi.css">
+	<link rel="stylesheet" href="../assets/mui/css/icons-extra.css">
+	<script src="../assets/mui/js/mui.min.js"></script>
+	<script src="../assets/zepto/zepto.min.js"></script>
+	<script src="../js/common.js"></script>
+	<style type="text/css">
+		.mui-popover .mui-bar~.mui-table-view{
+			padding-top: 0px;
+		}
+		.mui-backdrop{
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+	</style>
+</head>
+<body>
+        <header id="header" class="mui-bar mui-bar-nav">
+                <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+                <h1 class="mui-title">充值</h1>
+                <a class=" mui-pull-right meimory"  href="../sy-chongzhi/chongzhijilu.html">充值记录</a>
+		</header>    
+	    <div class="mui-content"> 
+			<div class="mui-wrapper">
+				<div class="cz-ad"> 
+				<img src="../images/chongzhi/ad.png" style="width: 100%;" alt="">
+				</div>
+				<div class="jingdutiao">
+					<h5> 累计充值礼包</h5>    
+					<p class="mui-progressbar mui-progressbar-in" data-progress="20"><span style="transform: translate3d(-90%, 0px, 0px);"></span></p>
+					<span class="mui-icon-extra mui-icon-extra-gift mui-pull-right" style="font-size: 20px;"></span>
+				</div>
+			</div>
+			<div class="hr_12"></div>
+			<div class="mui-wrapper">
+				<div class="yue">
+					余额：<span class="yue-price">153.25</span>
+				</div>
+				<div class="mui-row cz-btn">
+					<div class="mui-col-xs-3">
+						<button type="button" class="mui-btn">10 币</button>
+					</div>
+					<div class="mui-col-xs-3">						
+						<button type="button" class="mui-btn">50 币</button>						
+					</div>
+					<div class="mui-col-xs-3">					
+						<button type="button" class="mui-btn cz-hot">100 币</button>					
+					</div>
+					<div class="mui-col-xs-3">						
+						<input class="cz-input" type="text" placeholder="其他金額">						
+					</div>
+				</div>
+				<div class="cz-youhui">
+					首冲优惠：新用户第一次充值金额300币以内，享<span class="cz-zhekou">优惠8折</span>
+				</div>
+				<div class="cz-zhifu">
+					支付：<span class="cz-zhekou">80</span>元&nbsp;(优惠<span class="cz-zhekou">20</span>元)
+				</div>
+				<button type="button" class="mui-btn mui-btn-block cz-comfirm" id="comfirm">确认充值</button>
+			</div>
+		</div>   
+		<div class="comfirm-wrap">
+			<div id="popover" class="mui-popover">
+				<header class="mui-bar mui-bar-nav">
+					<span class="mui-icon mui-icon-closeempty" id="closeit"></span>
+					<h1 class="mui-title">确认付款</h1>
+				</header>
+				<div class="cf-content">
+					<div class="cf-money">
+						<p class="cf-true">100币</p>
+						<p class="cf-pay">￥&nbsp;80.00</p>
+					</div>
+				</div>
+				<ul class="mui-table-view cf-payway">
+					<li class="cf-fangshi">付款方式</li>
+					<li class="mui-table-view-cell"><img src="../images/querenzhifu/zhifubao.png" alt="">支付宝</li>
+					<li class="mui-table-view-cell"><img src="../images/querenzhifu/weixin.png" alt="">微信</li>
+					<li class="mui-table-view-cell"><img src="../images/querenzhifu/yinhang.png" alt="">中国银行储蓄卡（6521）</li>
+					<li class="mui-table-view-cell"><img src="../images/querenzhifu/tianjia.png" alt="">添加银行卡</li>
+				</ul>
+			</div>
+		</div>
+</body>
+<script type="text/javascript">
+	(function(mui, doc) {
+		mui.init();
+		function popover(id) {
+			doc.getElementById(id).addEventListener('tap',function () {
+				mui("#popover").popover("toggle");
+			});
+		}
+		popover('comfirm');
+		popover('closeit');
+	})(mui, document);
+	
+</script>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="../assets/mui/css/mui.min.css">
+	<link rel="stylesheet" href="../css/userpost.css">
+	<script src="../assets/zepto/zepto.min.js"></script>
+	<script src="../assets/mui/js/mui.min.js"></script>
+	<script src="../assets/mui/js/mui.view.js"></script>
+	<script src="../js/common.js"></script>
+</head>
+
+<body>
+	<!--页面主结构开始-->
+	<div id="app" class="mui-views">
+		<div class="mui-view">
+			<div class="mui-navbar">
+			</div>
+			<div class="mui-pages">
+			</div>
+		</div>
+	</div>
+	<!--页面主结构结束-->
+	<div id="setting" class="mui-page">
+		<!--页面标题栏开始-->
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+			</button>
+			<h1 class="mui-center mui-title">更多</h1>
+		</div>
+		<!--页面标题栏结束-->
+		<!--页面主内容区开始-->
+		<div class="mui-page-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a id="head" class="mui-navigate-right" style="line-height: 35px;">
+						<span>更换头像</span>
+						<span class="mui-pull-right" style="height: 35px;">
+							<img class="mui-action-preview" id="head-img1" src="../images/wode/wode.png" style="margin-right: 20px;"/>
+						</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="#name">
+						<span>昵称</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="#qianming">
+						<span>个性签名</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="#xingbie">
+						<span>性别</span>
+					</a>
+				</li>	
+			</ul>		
+		</div>
+		<!--页面主内容区结束-->
+	</div>
+	<div id="name" class="mui-page">
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+			</button>
+			<button type="button"class="mui-right mui-btn  mui-btn-link mui-btn-nav mui-pull-right">保存</button>
+			<h1 class="mui-center mui-title">修改昵称</h1>
+		</div>
+		<div class="mui-page-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<form class="mui-input-group">
+						<div class="mui-input-row">
+							<input type="text" class="mui-input-clear" placeholder="修改昵称">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="qianming" class="mui-page">
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+			</button>
+			<button type="button"class="mui-right mui-btn  mui-btn-link mui-btn-nav mui-pull-right">保存</button>
+			<h1 class="mui-center mui-title">编辑个性签名</h1>
+		</div>
+		<div class="mui-page-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="mui-card">
+						<form class="mui-input-group">
+							<div class="mui-input-row" style="margin: 10px 5px;">
+								<textarea id="textarea" rows="5" placeholder="个性签名"></textarea>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="xingbie" class="mui-page">
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+			</button>
+			<button type="button"class="mui-right mui-btn  mui-btn-link mui-btn-nav mui-pull-right">保存</button>
+			<h1 class="mui-center mui-title">修改性别</h1>
+		</div>
+		<div class="mui-page-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="mui-card">
+						<form class="mui-input-group">
+							<div class="mui-input-row mui-radio">
+								<label>男</label>
+								<input name="xingbie" type="radio">
+							</div>
+							<div class="mui-input-row mui-radio">
+								<label>女</label>
+								<input name="xingbie" type="radio" checked>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		mui.init();
+		var viewApi = mui('#app').view({
+			defaultPage: '#setting'
+		});
+		//初始化单页的区域滚动
+		mui('.mui-scroll-wrapper').scroll();
+		var view = viewApi.view;
+		(function($) {
+			//处理view的后退与webview后退
+			var oldBack = $.back;
+			$.back = function() {
+				if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+					viewApi.back();
+				} else { //执行webview后退
+					oldBack();
+				}
+			};
+			//监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+			//第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+			view.addEventListener('pageBeforeShow', function(e) {
+				//				console.log(e.detail.page.id + ' beforeShow');
+			});
+			view.addEventListener('pageShow', function(e) {
+				//				console.log(e.detail.page.id + ' show');
+			});
+			view.addEventListener('pageBeforeBack', function(e) {
+				//				console.log(e.detail.page.id + ' beforeBack');
+			});
+			view.addEventListener('pageBack', function(e) {
+				//				console.log(e.detail.page.id + ' back');
+			});
+		})(mui);
+		//更换头像
+		mui(".mui-table-view-cell").on("tap", "#head", function(e) {
+			if(mui.os.plus){
+				var a = [{
+					title: "拍照"
+				}, {
+					title: "从手机相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "修改头像",
+					cancel: "取消",
+					buttons: a
+				}, function(b) {
+					switch (b.index) {
+						case 0:
+							break;
+						case 1:
+							getImage();
+							break;
+						case 2:
+							galleryImg();
+							break;
+						default:
+							break
+					}
+				})	
+			}
+			
+		});
+		function getImage(){
+			var cmr = plus.camera.getCamera();
+			cmr.captureImage(function(path) {
+				var path = "file://" + plus.io.convertLocalFileSystemURL(path);
+				$('#head-img1').attr('src', path);
+				//上传图片
+				
+			}, function(err) {});
+		}
+		function galleryImg(){
+			plus.gallery.pick(function(path) {
+			$('#head-img1').attr('src', path);
+			// 上传图片
+			
+			}, function(err) {}, null);
+		}
+	</script>		
+	
+</body>
+
+</html>

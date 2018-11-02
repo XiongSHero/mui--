@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="assets/mui/css/mui.min.css">
+	<link rel="stylesheet" href="assets/mui/css/iconfont.css">
+	<script src="assets/zepto/zepto.min.js"></script>
+	<script src="assets/mui/js/mui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/login.css"/>
+	<script src="js/common.js"></script>
+	<script src="js/login-psw.js"></script>
+	<style type="text/css">
+		.mui-scroll-wrapper{
+			top: 44px;
+		}
+		.mui-bar{
+			background: #fff;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		.mui-bar a{
+			color: #323232;
+		}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	</header>
+	<div class="mui-content">
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--这里放置真实显示的DOM内容-->
+				<div class="login-wrap">
+					<div class="login-logo">
+						<img src="images/login/Logo.png" class="l-logo" >
+					</div>
+					<form class="user-box mui-input-group">
+						<div class="user-item l-margin mui-input-row">
+							<div class="l-user">
+								<label for="username" class="l-label">
+									<img src="images/login/user.png" >
+								</label>
+								<input type="tel" class="l-input mui-input-clear" name="userPhone" id="userPhone" placeholder="请输入手机号" />
+							</div>
+						</div>
+						<div class="user-item l-margin mui-input-row">
+							<div class="l-user">
+								<label for="password" class="l-label">
+									<img src="images/login/psw.png" >
+								</label>
+								<input type="password" class="l-input mui-input-clear" name="password" id="password" placeholder="请输入密码" />
+							</div>
+						</div>
+					</form>
+					<button type="button" id="loginBtn" class="mui-btn mui-btn-blue mui-btn-block" data-loading-text="登陆中">立即登录</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	(function(mui, doc){
+		mui.init({
+			statusBarBackground: '#fff',
+			swipeBack: true,
+		});
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+		});
+	})(mui, document);
+</script>
+</html>

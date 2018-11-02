@@ -1,0 +1,134 @@
+ul{
+	list-style:none;
+}
+body{
+    background-color: #fff;
+}
+
+.public-color{
+	background: #fc0;
+}
+.mui-content{
+	background-color: #fff;
+	transition: all 0.5s;
+}
+.mui-table-view .mui-grid-view .mui-grid-9{
+	background-color: #fff;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+	border:none;
+	padding:0;
+}
+.mui-segmented-control-tab a{
+	position: relative;
+}
+/* .mui-segmented-control-tab .mui-active:after{
+	position: absolute;
+	content:'';
+	margin: 0 auto;
+	width: 46px;
+	height: 5px;
+	left: 0px;
+	bottom: 0px;
+	background: #FFCC00;
+} */
+.mui-tab-item img{
+	text-align: center;
+	width: 20%;
+}
+.main{
+	height: 50px;
+	padding-bottom: 10px;
+	background-color: #fff;
+	font-size: 16px;
+}
+.together{
+	float:left;
+	margin-left:20px;
+	padding-left: 10px;
+	line-height: 50px;
+	position: relative;
+}
+.together::before{
+	content:"";
+	position: absolute;
+	width: 5px;
+	height: 22px;
+	background-color: #ffcc00;
+	top:14px;
+	left:-7px;
+}
+.more{
+	float: right;
+	margin-right: 20px;
+	line-height: 50px;
+	
+}
+.more a{
+	color:#666666;
+	font-size: 14px;
+}
+.bgc{
+	width: 100%;
+	height: 10px;
+	background-color: #eee;
+}
+.footer{
+	padding:5px 0;
+}
+.footer .mui-tab-item.mui-active{
+	color:#ffcc00;
+}
+.footer a{
+	font-size: 14px;
+}
+.mg{
+	margin-bottom: 30px;
+}
+.mui-slider-indicator .mui-active.mui-indicator{
+	background-color: #ffcc00;
+}
+.friend{
+    width: 100%;
+    height: 100px;
+}
+.friend-l,
+.friend-r{
+    width: 50%;
+    float: left;
+    padding:10px;
+    position: relative;
+  
+}
+.friend-l a img,
+.friend-r a img{
+    width: 100%;
+    box-shadow: 20px 5px 5px #fff;
+}
+.mui-table-view:after{
+    height: 0;
+}
+#segmentedControl{
+    width: 50%;
+}
+#segmentedControl a{
+    font-size: 18px;
+    font-weight: 700;
+    color:#333;
+}
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+    color:#ffcc00;
+    border-bottom: 5px solid #ffcc00;
+}
+.mui-search .mui-placeholder{
+	text-align: left;
+	margin-left:10px;
+}
+.mui-indexed-list-bar{
+	z-index: 5;
+	background-color: #fff;
+}
+.mui-table-view-cell img{
+	width: 40px;
+	height: 40px;
+}

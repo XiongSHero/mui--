@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../assets/mui/css/mui.min.css">
+		<link rel="stylesheet" href="../css/more.css">
+		<script src="../assets/mui/js/mui.min.js"></script>
+		<script src="../assets/mui/js/mui.view.js"></script>
+		<script src="../assets/zepto/zepto.min.js"></script>
+	</head>
+	<body class="mui-fullscreen">
+		<!--页面主结构开始-->
+		<div id="app" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar">
+				</div>
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+		<!--页面主结构结束-->
+		<!--单页面开始-->
+		<div id="setting" class="mui-page">
+			<!--页面标题栏开始-->
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">更多</h1>
+			</div>
+			<!--页面标题栏结束-->
+			<!--页面主内容区开始-->
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="m-user-wrap">
+							<div class="more-user">
+								<img src="../images/message/uer-img.png" alt="">
+								<p class="m-username">近而无缘</p>
+							</div>
+						</div>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								消息免打扰
+								<div id="M_Toggle" class="mui-switch mui-active">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right" href="#beizhu">
+									设置备注
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									把他推荐给好友
+								</a>
+							</li>
+						</ul>
+						<div class="mui-row">
+							<button type="button" class="mui-btn mui-btn-block">删除好友</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--页面主内容区结束-->
+		</div>
+		<!--单页面结束-->
+		<div id="beizhu" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<button type="button"class="mui-right mui-btn  mui-btn-link mui-btn-nav mui-pull-right">保存</button>
+				<h1 class="mui-center mui-title">修改备注</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-input-row">
+							<input type="text" class="mui-input-clear" placeholder="修改备注">
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- <script src="js/mui.js"></script> -->
+		<script type="text/javascript">
+			mui.init();
+			var viewApi = mui('#app').view({
+				defaultPage: '#setting'
+			});
+			//初始化单页的区域滚动
+			mui('.mui-scroll-wrapper').scroll();
+			var view = viewApi.view;
+			(function($) {
+				//处理view的后退与webview后退
+				var oldBack = $.back;
+				$.back = function() {
+					if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+						viewApi.back();
+					} else { //执行webview后退
+						oldBack();
+					}
+				};
+				//监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
+				//第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
+				view.addEventListener('pageBeforeShow', function(e) {
+					//				console.log(e.detail.page.id + ' beforeShow');
+				});
+				view.addEventListener('pageShow', function(e) {
+					//				console.log(e.detail.page.id + ' show');
+				});
+				view.addEventListener('pageBeforeBack', function(e) {
+					//				console.log(e.detail.page.id + ' beforeBack');
+				});
+				view.addEventListener('pageBack', function(e) {
+					//				console.log(e.detail.page.id + ' back');
+				});
+			})(mui);
+		</script>
+	</body>
+
+</html>

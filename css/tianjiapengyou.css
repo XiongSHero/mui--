@@ -1,0 +1,50 @@
+.tianjia-head {
+    -webkit-box-shadow: 0 0 6px #ccc;
+    box-shadow: 0 0 6px #ccc;
+}
+.mui-bar{
+	background: #fc0;
+}
+.mui-bar a{
+	color: #101010;
+}
+.tj-search{
+	padding: 20px 10px 2px;
+	background: #fff;
+	margin-bottom: 15px;
+}
+.tongxunlu{
+	display: inline-block;
+}
+.tongxunlu p{
+	font-size: 15px;
+}
+.mui-navigate-right img{
+	display: inline-block;
+	margin-right: 22px;
+	width: 35px;
+	height: 35px;
+	vertical-align: top;
+}
+.tongxunlu img{
+	margin-top: 16px;
+}
+.txl-daoru{
+	padding-top: 5px;
+	line-height: 28px;
+	color: #333;
+}
+.txl-haoyou{
+	padding-bottom: 4px;
+	line-height: 28px;
+	color: #666;
+}
+.qqhaoyou{
+	display: inline-block;
+	height: 35px;
+	line-height: 35px;
+}
+.qqhaoyou p{
+	color: #333;
+	font-size: 15px;
+}

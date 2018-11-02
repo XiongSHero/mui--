@@ -1,0 +1,61 @@
+html, body{
+	height: 100%;
+}
+.kf-header{
+	background: #fc0;
+}
+.kf-header a{
+	color: #333;
+}
+.kf-wrap{
+	padding: 0 10px;
+}
+.kf-jiqitu{
+	padding-top: 40px;
+}
+.kf-wrapper{
+	position: relative;
+	width: 150px;
+	height: 50px;
+	margin: 0px auto 0;
+	background: #fff;
+	border-radius: 8px;
+	text-align: center;
+}
+.kf-quan{
+	position: absolute;
+	top: -50%;
+	transform: translateX(-50%);
+	left: 50%;
+	background: #fff;
+	text-align: center;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+}
+.kf-quan img{
+	width: 38px;
+	height: 43px;
+}
+.kf-zhuanshu{
+	line-height: 50px;
+	padding-top: 10px;
+	color: #333;
+}
+.kf-text{
+	text-align: center;
+	line-height: 24px;
+	padding: 7px 0px 9px 0px;
+}
+.kf-jiqi{
+	width: 70%;
+	line-height: 28px;
+	padding: 6px 14px;
+	color: #333;
+	border-radius: 8px 8px 8px 0px;
+	background: #fff;
+	margin-bottom: 10px;
+}
+.mui-table-view:before,.mui-table-view:after{
+	height: 0px;
+}

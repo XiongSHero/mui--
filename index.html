@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<title>Document</title>
+	<link rel="stylesheet" href="./assets/mui/css/mui.min.css">
+	<link rel="stylesheet" href="./css/index.css">
+	<script src="assets/zepto/zepto.min.js"></script>
+	<script src="assets/mui/js/mui.min.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/index.js"></script>
+
+</head>
+
+<body>
+	<nav class="mui-bar mui-bar-tab footer" id="navTab">
+		<a class="mui-tab-item  mui-active" href="homepage.html">
+			<img src="images/@3x/shouye.png" alt="">
+			<div class="mui-tab-label">首页</div>
+		</a>
+		<a class="mui-tab-item" href="message.html">
+			<!-- <span class="mui-badge">9</span>	 -->
+			<img src="images/@3x/xiaoxi@3x.png" alt="">
+			<div class="mui-tab-label">消息</div>
+		</a>
+		<a class="mui-tab-item" href="gonggao.html">
+			<img src="images/@3x/gonggao@3x.png" alt="">
+			<div class="mui-tab-label">公告</div>
+		</a>
+		<a class="mui-tab-item" href="user.html">
+			<!-- <span class="mui-icon mui-icon-gear"></span> -->
+			<img src="images/@3x/wode@3x.png" alt="">
+			<div class="mui-tab-label">我的</div>
+		</a>
+	</nav>
+</body>
+<script type="text/javascript">
+(function(mui, doc, $){
+    var subpages = ['homepage.html','message.html','gonggao.html','user.html'];
+    var subpage_style = {
+        top: '0px',
+        bottom: '49px',
+        scrollIndicator:'none'
+    };
+
+    var aniShow = {};
+
+    //创建子页面，首个选项卡页面显示，其它均隐藏；
+    mui.plusReady(function() {
+        var self = plus.webview.currentWebview();
+        for (var i = 0; i < 4; i++) {
+            var temp = {};
+            var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+            if (i > 0) {
+                sub.hide();
+            }else{
+                temp[subpages[i]] = "true";
+                mui.extend(aniShow,temp);
+            }
+            self.append(sub);
+        }
+    });
+
+
+    //当前激活选项
+    var activeTab = subpages[0];
+    // imgs[0].src = 'images/@3x/首页.png';
+    // var title = doc.getElementById("title");
+    //选项卡点击事件
+    mui('.mui-bar-tab').on('tap', 'a', function(e) {
+        var container = doc.getElementById('navTab'),
+            imgs = container.getElementsByTagName('img'),
+            imgSrc = ['images/@3x/shouye@3x.png', 'images/@3x/xiaoxi@3x.png', 'images/@3x/gonggao@3x.png', 'images/@3x/wode@3x.png'];
+        for(var i = 0; i < imgs.length; i++){
+            imgs[i].src = imgSrc[i];
+        }
+        var targetTab = this.getAttribute('href'),
+            nowSrc = this.querySelector('img').src;
+			console.log(nowSrc);
+        nowSrc = nowSrc.split('@3x.')[0] + '.png';
+        this.querySelector('img').src = nowSrc;
+		if (targetTab == activeTab) {
+			return;
+		}
+
+        //更换标题
+        // title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
+        //显示目标选项卡
+        //若为iOS平台或非首次显示，则直接显示
+        if(mui.os.ios||aniShow[targetTab]){
+            plus.webview.show(targetTab);
+        }else{
+            //否则，使用fade-in动画，且保存变量
+            var temp = {};
+            temp[targetTab] = "true";
+            mui.extend(aniShow,temp);
+            plus.webview.show(targetTab,"fade-in",100);
+        }
+        //隐藏当前;
+        plus.webview.hide(activeTab);
+        //更改当前活跃的选项卡
+        activeTab = targetTab;
+
+    });
+    //自定义事件，模拟点击“首页选项卡”
+    doc.addEventListener('gohome', function() {
+        var defaultTab = document.getElementById("defaultTab");
+        //模拟首页点击
+        mui.trigger(defaultTab, 'tap');
+        //切换选项卡高亮
+        var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+        if (defaultTab !== current) {
+            current.classList.remove('mui-active');
+            defaultTab.classList.add('mui-active');
+        }
+    });
+    // 测试传值
+    var state = null;
+    mui.plusReady(function(){
+        var self = plus.webview.currentWebview();
+        doc.addEventListener('index', function(e){
+            if(e.detail.setStateBar){
+				mui.init({
+					statusBarBackground: '#ffcc00'
+				});
+				if(mui.os.android){
+					mui.plusReady(function() {
+						plus.navigator.setStatusBarBackground("#FFCC00");
+					});
+				}					
+			}
+
+        });
+    });
+})(mui, document, $);
+</script>
+</html>
+
+	
